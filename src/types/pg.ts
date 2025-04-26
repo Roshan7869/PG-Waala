@@ -13,9 +13,12 @@ export interface PG {
 export type WaterFacility = '24/7 Available' | 'Limited Hours';
 export type FilterOptions = {
     maxPrice?: number;
+    minPrice?: number;
     hasWifi?: boolean;
     isIndependent?: boolean;
     waterFacility?: WaterFacility;
     location?: string;
     nearbyCoaching?: string;
+    amenities?: string[];
+    propertyTypes?: string[];
 }; 
