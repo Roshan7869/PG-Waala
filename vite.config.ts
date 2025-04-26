@@ -1,42 +1,53 @@
 import { defineConfig } from 'vite';
-import { resolve } from 'path';
+import react from '@vitejs/plugin-react';
+import path from 'path';
+import tailwindcss from 'tailwindcss';
+import autoprefixer from 'autoprefixer';
 
 export default defineConfig({
-  root: '.',
+  plugins: [react()],
+  root: './',
+  publicDir: 'public',
   build: {
     outDir: 'dist',
+    assetsDir: 'assets',
+    sourcemap: true,
     rollupOptions: {
-      input: {
-        main: resolve(__dirname, 'index.html'),
-        app: resolve(__dirname, 'src/main.ts'),
-      },
       output: {
-        entryFileNames: '[name].js',
-        chunkFileNames: '[name]-[hash].js',
-        assetFileNames: '[name].[ext]'
-      }
-    }
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          ui: ['@headlessui/react', '@heroicons/react'],
+        },
+      },
+    },
   },
   server: {
     port: 3000,
     open: true,
     fs: {
       strict: false
+    },
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      },
     }
   },
   resolve: {
     alias: {
-      '@': resolve(__dirname, 'src')
+      '@': path.resolve(__dirname, './src'),
     }
   },
   optimizeDeps: {
-    include: ['@/modules/performance', '@/modules/cache', '@/modules/filters', '@/modules/virtualScroll']
+    include: ['react', 'react-dom', '@headlessui/react', '@heroicons/react'],
   },
   css: {
     postcss: {
       plugins: [
-        require('tailwindcss'),
-        require('autoprefixer')
+        tailwindcss,
+        autoprefixer
       ]
     }
   }
