@@ -24,8 +24,11 @@ export interface FilterCriteria {
         min: number;
         max: number;
     };
-    type?: string;
+    type?: string[];
     amenities?: string[];
+    minPrice?: number;
+    maxPrice?: number;
+    searchTerm?: string;
 }
 
 export interface DOMElements {
