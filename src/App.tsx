@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { PG, FilterOptions } from './types/pg';
+import { FilterOptions } from './types/pg';
 import { pgData } from './data/pgData';
 import PGCard from './components/PGCard';
 import PGFilter from './components/PGFilter';
