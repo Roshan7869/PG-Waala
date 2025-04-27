@@ -1,3 +1,4 @@
+/* global console, TextEncoder */
 import { performanceMonitor } from './performance';
 
 interface CacheItem<T> {

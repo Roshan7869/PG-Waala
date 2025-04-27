@@ -1,3 +1,5 @@
+/* global HTMLSelectElement */
+/// <reference lib="dom" />
 import React, { useState } from 'react';
 import { FilterOptions } from '../types/pg';
 
@@ -117,6 +119,7 @@ const PGFilter: React.FC<PGFilterProps> = ({ filters, onFilterChange }) => {
             value={priceRange[0]}
             onChange={e => handlePriceChange(0, Number(e.target.value))}
             className="w-1/2 accent-blue-500"
+            placeholder="Min price"
           />
           <span className="text-xs">₹{priceRange[0] / 1000}k</span>
           <span className="mx-1">-</span>
@@ -127,6 +130,7 @@ const PGFilter: React.FC<PGFilterProps> = ({ filters, onFilterChange }) => {
             value={priceRange[1]}
             onChange={e => handlePriceChange(1, Number(e.target.value))}
             className="w-1/2 accent-blue-500"
+            placeholder="Max price"
           />
           <span className="text-xs">₹{priceRange[1] / 1000}k</span>
         </div>

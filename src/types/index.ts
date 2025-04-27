@@ -1,3 +1,7 @@
+/// <reference lib="dom" />
+
+/* global HTMLSelectElement */
+
 export interface PG {
     id: string;
     name: string;
